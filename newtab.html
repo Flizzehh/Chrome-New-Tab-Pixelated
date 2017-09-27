@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="control.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300">
+		<style>
+			canvas {
+				position: fixed;
+				top: 0%;
+				left: 0%;
+				z-index: -1;
+			}
+			time {
+				position: fixed;
+				top: 40%;
+				left: 50%;
+				transform: translateX(-50%) translateY(-50%);
+
+				font-family: 'Open Sans Condensed', sans-serif;
+				font-size:15vw;
+				color:#ecf0f1;
+				padding: 0;
+			}
+			date {
+				position: fixed;
+				top: 60%;
+				left: 50%;
+				transform: translateX(-50%) translateY(-50%);
+
+				font-family: 'Open Sans Condensed', sans-serif;
+				font-size:2vw;
+				color:#ecf0f1;
+				padding: 0;
+			}
+		</style>
+		<time id="time"></time>
+		<date id="date"></date>
+		<weather id="weather"></weather>
+	</head>
+	<canvas id="canvas" width="0" height="0" style="border:0px solid #bdc3c7;">
+	
+</html>
