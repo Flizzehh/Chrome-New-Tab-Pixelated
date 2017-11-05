@@ -1,22 +1,32 @@
 var monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 function calcColours(timeSum) {
-	//var rVal = ((255 / 4) * Math.sin(Math.PI * (timeSum / (86400 * 12)) * 255) + (255 / 2)) * (1 / Math.sinh(Math.PI * (timeSum / 86400) + 1));
-	var rVal = 1 * (((255 / 8) * Math.sin(2 * Math.PI * (timeSum / (86400 * 12)) * 255) + (255 / 4)) * (1 / Math.sinh(Math.PI * (timeSum / 86400) + 1)));
-	//var gVal = ((255 / 4) * Math.sin(Math.PI * ((86400 - timeSum) / (86400 * 12)) * 255) + (255 / 2)) * (1 / Math.sinh(Math.PI * ((86400 - timeSum) / 86400) + 1));
-	var gVal = 1 * (((255 / 8) * Math.sin(2 * Math.PI * ((86400 - timeSum) / (86400 * 12)) * 255) + (255 / 4)) * (1 / Math.sinh(Math.PI * ((86400 - timeSum) / 86400) + 1)));
-	//var bVal = -1 * ((Math.pow((timeSum - (86400 / 2)) / (86400 / 20), 2)) + 40 * Math.sin(timeSum / 864) + 40) + 100;
-	var bVal = 0.5 * ((Math.pow((timeSum - (86400 / 2)) / (86400 / 20), 2)) + 80 * Math.sin(timeSum / (864*2)) + 40) + 150;
+	//var rVal = 1 * (((255 / 8) * Math.sin(2 * Math.PI * (timeSum / (86400 * 12)) * 255) + (255 / 4)) * (1 / Math.sinh(Math.PI * (timeSum / 86400) + 1)));
+	//var gVal = 1 * (((255 / 8) * Math.sin(2 * Math.PI * ((86400 - timeSum) / (86400 * 12)) * 255) + (255 / 4)) * (1 / Math.sinh(Math.PI * ((86400 - timeSum) / 86400) + 1)));
+	//var bVal = 0.5 * ((Math.pow((timeSum - (86400 / 2)) / (86400 / 20), 2)) + 80 * Math.sin(timeSum / (864*2)) + 40) + 150;
 
-	rVal += 16 + 54;
-	gVal += 16 + 54;
-	bVal += 0;
+	//rVal += 16 + 54;
+	//gVal += 16 + 54;
+	//bVal += 0;
+
+	//var rVal = ((timeSum / 86400) - (1/3)) * 255;
+	//var gVal = ((timeSum / 86400) - (2/3)) * 255;
+	//var bVal = ((timeSum / 86400) - (3/3)) * 255;
+
+	var normalizedTimeSum = timeSum / 86400;
+
+	//var rVal = 255 * (-2 * Math.pow(normalizedTimeSum - 0.5,2) + 1);
+	//var gVal = 255 * (2 * Math.pow(normalizedTimeSum - 0.5,2));
+	var rVal = 255 * (0.25 * Math.sin(2 * Math.PI * normalizedTimeSum) + 0.5);
+	var gVal = 255 * (0.25 * Math.sin(4 * Math.PI * normalizedTimeSum) + 0.5);
+	var bVal = 255 * (0.25 * Math.sin(6 * Math.PI * normalizedTimeSum) + 0.5);
 
 	rVal = Math.round(Math.max(Math.min(rVal, 255), 16));
 	gVal = Math.round(Math.max(Math.min(gVal, 255), 16));
 	bVal = Math.round(Math.max(Math.min(bVal, 255), 16));
 
 	var timeColour = rVal.toString(16) + "" + gVal.toString(16) + "" + bVal.toString(16);
+
 	return timeColour;
 }
 
@@ -25,11 +35,13 @@ function gridGradient(timeSum) {
 	c.width = screen.width;
 	c.height = screen.height;
 
-	var size = 200;
+	console.log(timeSum);
+
+	var size = 100;
 	var ctx = c.getContext("2d");
 	for (y = 0; y < screen.height / size; y++) {
 		for (x = 0; x < screen.width / size; x++) {
-			var newColour = calcColours(timeSum + (x * size * 2) + (y * size * 2));
+			var newColour = calcColours(timeSum + (x * size * 5) + (y * size * 5));
 			ctx.fillStyle = "#" + newColour.toString();
 			ctx.fillRect(x * size, y * size, size, size);
 		}
@@ -68,6 +80,7 @@ function calculateTimeSum(hours, minutes, seconds) {
 
 function checkTime() {
 	var timeSum = 0;
+	//switchTextColour();
 	window.setInterval(function () {
 		var td = new Date();
 		var hours = td.getHours();
@@ -75,7 +88,7 @@ function checkTime() {
 		var seconds = td.getSeconds();
 
 		newTimeSum = calculateTimeSum(hours, minutes, seconds);
-
+		
 		//newTimeSum = timeSum + 250;
 		//newTimeSum %= 86400;
 
