@@ -13,7 +13,10 @@ function calcColours(timeSum) {
 	//var gVal = ((timeSum / 86400) - (2/3)) * 255;
 	//var bVal = ((timeSum / 86400) - (3/3)) * 255;
 
-	var normalizedTimeSum = timeSum / 86400;
+	var td = new Date();
+
+	var dayOffset = (((td.getTime() / 1000 / 60 / 60 / 24) * 3000) % 86400) / 86400;
+	var normalizedTimeSum = ((timeSum) / 86400) + dayOffset;// + (((td.getUTCDate() + dayOffset) * 2000) / 86400);
 
 	//var rVal = 255 * (-2 * Math.pow(normalizedTimeSum - 0.5,2) + 1);
 	//var gVal = 255 * (2 * Math.pow(normalizedTimeSum - 0.5,2));
@@ -34,8 +37,6 @@ function gridGradient(timeSum) {
 	var c = document.getElementById("canvas");
 	c.width = screen.width;
 	c.height = screen.height;
-
-	console.log(timeSum);
 
 	var size = 100;
 	var ctx = c.getContext("2d");
@@ -89,7 +90,7 @@ function checkTime() {
 
 		newTimeSum = calculateTimeSum(hours, minutes, seconds);
 		
-		//newTimeSum = timeSum + 250;
+		//newTimeSum = timeSum + 1000;
 		//newTimeSum %= 86400;
 
 		if (newTimeSum != timeSum) {
