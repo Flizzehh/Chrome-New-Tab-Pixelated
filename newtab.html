@@ -32,10 +32,166 @@
 				color:#ecf0f1;
 				padding: 0;
 			}
+
+			.sliderContainer {
+				-webkit-appearance: none;
+				width: 20px;
+				height: 20px;
+				opacity: 0;
+				-webkit-transition: .2s;
+				transition: opacity .2s;
+				display:grid;
+			}
+			.sliderContainer:hover {
+				opacity: 1;
+			}
+
+			.slider, .redSlider, .greenSlider, .blueSlider {
+				-webkit-appearance: none;
+				width: 200px;
+				height: 20px;
+				outline: none;
+				display:grid;
+			}
+			.redSlider {
+				background: #e74c3c;
+			}
+			.greenSlider {
+				background: #2ecc71;
+			}
+			.blueSlider {
+				background: #3498db;
+			}
+			.slider::-webkit-slider-thumb {
+				-webkit-appearance: none;
+				appearance: none;
+				width: 20px;
+				height: 20px;
+				background: #ecf0f1;
+				cursor: pointer;
+			}
+
+			.sliderReset {
+				-webkit-appearance: none;
+				width: 100px;
+				height: 20px;
+				outline: none;
+				border: none;
+				color: white;
+				background: #e74c3c;
+				text-align: center;
+				text-decoration: none;
+				font-size: 14px;
+				margin: 2px;
+				cursor: pointer;
+				display:grid;
+			}
+			.redSliderReset {
+				background: #e74c3c;
+			}
+			.greenSliderReset {
+				background: #2ecc71;
+			}
+			.blueSliderReset {
+				background: #3498db;
+			}
+
+			.sliderValue {
+				-webkit-appearance: none;
+				width: 50px;
+				height: 20px;
+				outline: none;
+				border: none;
+				color: white;
+				background: #e74c3c;
+				text-align: center;
+				text-decoration: none;
+				font-size: 14px;
+				margin: 2px;
+				cursor: pointer;
+				display:grid;
+			}
+			.redSliderValue {
+				background: #e74c3c;
+			}
+			.greenSliderValue {
+				background: #2ecc71;
+			}
+			.blueSliderValue {
+				background: #3498db;
+			}
+
+			.textColourToggle {
+				-webkit-appearance: none;
+				width: 200px;
+				height: 20px;
+				outline: none;
+				border: none;
+				color: #ECF0F1;
+				background: #4F5151;
+				text-align: center;
+				text-decoration: none;
+				font-size: 14px;
+				margin: 2px;
+				cursor: pointer;
+				display:grid;
+			}
+
+			.testColourSpectrumToggle {
+				-webkit-appearance: none;
+				width: 200px;
+				height: 20px;
+				outline: none;
+				border: none;
+				color: #4F5151;
+				background: #F1C40F;
+				text-align: center;
+				text-decoration: none;
+				font-size: 14px;
+				margin: 2px;
+				cursor: pointer;
+				display:grid;
+			}
+
+			.saveSettingsButton {
+				-webkit-appearance: none;
+				width: 200px;
+				height: 20px;
+				outline: none;
+				border: none;
+				color: #4F5151;
+				background: #2ECC71;
+				text-align: center;
+				text-decoration: none;
+				font-size: 14px;
+				margin: 2px;
+				cursor: pointer;
+				display:grid;
+			}
 		</style>
 		<time id="time"></time>
 		<date id="date"></date>
-		<weather id="weather"></weather>
+
+		<div class="sliderContainer">
+			<div class="sliderArea">
+				<input id="redSlider" type="range" min="-10" max="10" value="1" class="slider redSlider">
+				<button id="redReset" type="button" class="sliderReset redSliderReset">Reset Red</button>
+				<button id="redSliderValue" class="sliderValue redSliderValue">2</button>
+			</div>
+			<div class="sliderArea">
+				<input id="greenSlider" type="range" min="-10" max="10" value="1" class="slider greenSlider">
+				<button type="button" class="sliderReset greenSliderReset" id="greenReset">Reset Green</button>
+				<button id="greenSliderValue" class="sliderValue greenSliderValue">4</button>
+			</div>
+			<div class="sliderArea">
+				<input id="blueSlider" type="range" min="-10" max="10" value="1" class="slider blueSlider">
+				<button type="button" class="sliderReset blueSliderReset" id="blueReset">Reset Blue</button>
+				<button id="blueSliderValue" class="sliderValue blueSliderValue">6</button>
+			</div>
+			<button id="testColourSpectrumToggle" class="testColourSpectrumToggle">View Colour Spectrum</button>
+			<button id="textColourToggle" class="textColourToggle">Light/Dark Text Colour</button>
+			<button id="saveSettingsButton" class="saveSettingsButton">Nothing to Save</button>
+		</div>
 	</head>
 	<canvas id="canvas" width="0" height="0" style="border:0px solid #bdc3c7;">
 	
