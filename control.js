@@ -107,19 +107,35 @@ function saveSettings() {
  */
 function loadSettings() {
 	chrome.storage.sync.get('redValue', function(data) {
-		redModifier = data.redValue;
+		if (data.redValue == undefined) {
+			redModifier = 1;
+		} else {
+			redModifier = data.redValue;
+		}
 		applySettings();
 	});
 	chrome.storage.sync.get('greenValue', function(data) {
-		greenModifier = data.greenValue;
+		if (data.greenValue == undefined) {
+			greenModifier = 1;
+		} else {
+			greenModifier = data.greenValue;
+		}
 		applySettings();
 	});
 	chrome.storage.sync.get('blueValue', function(data) {
-		blueModifier = data.blueValue;
+		if (data.blueValue == undefined) {
+			blueModifier = 1;
+		} else {
+			blueModifier = data.blueValue;
+		}
 		applySettings();
 	});
 	chrome.storage.sync.get('darkText', function(data) {
-		darkText = !data.darkText;
+		if (data.darkText == undefined) {
+			darkText = true;
+		} else  {
+			darkText = !data.darkText;
+		}
 		switchTextColour();
 		applySettings();
 	});
