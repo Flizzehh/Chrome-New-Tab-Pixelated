@@ -1,6 +1,6 @@
 Overview
 
-![Overview](https://raw.githubusercontent.com/Flizzehh/chrome-new-tab-pixelated/master/screnshots/overview-s1.png "Overview")
+![Overview](https://raw.githubusercontent.com/Flizzehh/chrome-new-tab-pixelated/master/screenshots/overview-s1.png "Overview")
 
 Settings Window on Mouseover Bottom-Right:
 
